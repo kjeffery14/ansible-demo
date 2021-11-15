@@ -8,5 +8,6 @@
     isamva
 
   tasks:
+  - name: Create autoconfig images
     include_role:
       name: isva/autoconfig_iso
