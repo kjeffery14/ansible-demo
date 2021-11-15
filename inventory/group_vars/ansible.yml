@@ -1,0 +1,10 @@
+---
+# inventory/group_vars/ansible.yml
+# @version v1.00_2021-NOV-14
+# @author Kevin Jeffery
+
+ansible_packages:
+- "unzip"
+- "git"
+- "wget"
+- "genisoimage"
