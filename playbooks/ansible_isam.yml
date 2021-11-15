@@ -1,0 +1,37 @@
+---
+# playbooks/ansible_isam.yml
+# @version v2.00_2021-NOV-14
+# @author Kevin Jeffery
+
+- name: Build the Ansible Control system for ISAM
+  hosts:
+    ansible
+
+  tasks:
+  - name: Install Ansible packages - Linux 8
+    dnf:
+      name: "{{ ansible_packages }}"
+      state: "latest"
+      update_cache: "yes"
+    become: "yes"
+    when:
+      - ansible_packages is defined
+      - ansible_distribution in ['RedHat','CentOS', 'Rocky', 'AlmaLinux']
+      - ansible_distribution_version is version('8.0', 'ge')
+ 
+  - name: Ensure latest version of pip
+    pip:
+      name: "pip"
+      state: "latest"
+ 
+  - name: Install IBM-Security python library and pre-requisites
+    pip:
+      name:
+      - "requests"
+      - "importlib"
+      - "git+https://github.com/ibm-security/ibmsecurity#egg=ibmsecurity"
+      state: "latest"
+ 
+  - name: Install/Update ISAM Ansible Roles
+    command: ansible-galaxy install git+https://github.com/ibm-security/isam-ansible-roles.git,master --roles-path {{ roles_path | quote }} --force
+    when: roles_path is defined
