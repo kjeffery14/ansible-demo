@@ -43,3 +43,7 @@
   - name: Install/Update ISAM Ansible Roles
     command: ansible-galaxy install git+https://github.com/ibm-security/isam-ansible-roles.git,master --roles-path {{ isam_roles_path | quote }} --force
     when: isam_roles_path is defined
+
+  - name: Install/Update ibm.isam Ansible Collection
+    command: ansible-galaxy collection install ibm.isam --force
+    
