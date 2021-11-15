@@ -12,7 +12,7 @@
     authorized_key:
       user: "{{ ansible_user }}"
       state: present
-      key: "{{ lookup('file', '~.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
   - name: Install Ansible dependencies - Linux 8
     dnf:
