@@ -1,0 +1,12 @@
+---
+# playbooks/isam_autoconfig.yml
+# @version v2.00_2021-NOV-14
+# @author Kevin Jeffery
+
+- name: Create ISAM Autoconfig ISO
+  hosts:
+    isamva
+
+  tasks:
+    include_role:
+      name: isva/autoconfig_iso

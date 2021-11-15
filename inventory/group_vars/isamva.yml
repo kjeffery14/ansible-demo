@@ -1,0 +1,9 @@
+---
+# inventory/group_vars/isamva.yml
+# @version v1.00_2021-NOV-14
+# @author Kevin Jeffery
+
+ansible_connection: "ibm.isam.isam"
+ansible_isam_username: "admin@local"
+ansible_isam_password: "admin"
+ansible_isam_port: "443"

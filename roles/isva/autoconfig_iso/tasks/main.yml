@@ -1,0 +1,36 @@
+---
+# roles/isam/autoconfig_iso/tasks/main.yml
+# @version v1.00_2021-NOV-14
+# @author Kevin Jeffery
+
+- name: Set facts {{ host_name }}
+  set_fact:
+    autoconfig_iso_path: "../autoconfig_iso/{{ host_name.split('.') | first }}"
+    autoconfig_iso_image: "../autoconfig_iso/{{ host_name }}.iso"
+
+- name: Create Autoconfig directory
+  file:
+    path: "{{ autoconfig_iso_path }}"
+    state: "directory"
+  delegate_to: localhost
+
+- name: Template the Autoconfig metadata
+  template:
+    src: "app-metadata.j2"
+    dest: "{{ autoconfig_iso_path }}/app-metadata"
+  register: ret_metadata
+  delegate_to: localhost
+  
+- name: Remove existing Autoconfig ISO
+  file:
+    path: "{{ autoconfig_iso_image }}"
+    state: "absent"
+  when: ret_metadata.changed
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Create the Autoconfig ISO
+  command: "genisoimage -J -r -o {{ autoconfig_iso_image }} {{ autoconfig_iso_path }}"
+  args:
+    creates: "{{ autoconfig_iso_image }}"
+  delegate_to: localhost
