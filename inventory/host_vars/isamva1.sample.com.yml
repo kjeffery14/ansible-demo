@@ -5,8 +5,8 @@
 
 ansible_host: "192.168.40.110"
 
-host_name: ansible.sample.com
-description: "Ansible control server for ISAM"
+host_name: isamva1.sample.com
+description: "Cluster 1 Primary Master"
 ip_address: "{{ ansible_host }}"
 ip_gateway: "192.168.40.2"
 ip_netmask: "255.255.255.0"
