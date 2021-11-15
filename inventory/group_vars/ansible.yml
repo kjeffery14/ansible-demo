@@ -8,3 +8,5 @@ ansible_packages:
 - "git"
 - "wget"
 - "genisoimage"
+
+isam_roles_path: /ansible
