@@ -8,7 +8,13 @@
     ansible
 
   tasks:
-  - name: Install Ansible packages - Linux 8
+  - name: Set authorized key
+    authorized_key:
+      user: "{{ ansible_user }}"
+      state: present
+      key: "{{ lookup('file', '~.ssh/id_rsa.pub') }}"
+
+  - name: Install Ansible dependencies - Linux 8
     dnf:
       name: "{{ ansible_packages }}"
       state: "latest"
