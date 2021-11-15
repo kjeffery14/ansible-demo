@@ -9,6 +9,8 @@ Operating System: Rocky, Alma Linux or CentOS 8
 | vCPU | 2 | 4 |
 | Memory | 4GB | 8GB |
 | HD | 40GB | 100GB |
+| CDROM1 | AlmaLinux-8.3-x86_64-minimal.iso |
+| CDROM2 | ansible.sample.com.iso |
 
 ## Kickstart Image
 
@@ -28,9 +30,19 @@ This file tells the installer how to install and configure the Linux operating s
     ```
 3.  Install Python and Ansible
     ```shell
-    sudo dnf install -y python3 ansible
+    sudo dnf install -y python3 ansible git
     ```
-
+4.  Verify installation
+    ```shell
+    ansible --version
+    ```
+5.  Create a working directory for Ansible components and clone the ansible-demo repository
+    ```shell
+    sudo mkdir /ansible
+    sudo chown ansible:ansible /ansible
+    cd /ansible
+    git clone https://github.com/kjeffery14/ansible-demo.git
+    ```
 
 
 ## License
