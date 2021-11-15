@@ -29,6 +29,7 @@
     pip:
       name: "pip"
       state: "latest"
+    become: yes
  
   - name: Install IBM-Security python library and pre-requisites
     pip:
@@ -37,6 +38,7 @@
       - "importlib"
       - "git+https://github.com/ibm-security/ibmsecurity#egg=ibmsecurity"
       state: "latest"
+    become: yes
  
   - name: Install/Update ISAM Ansible Roles
     command: ansible-galaxy install git+https://github.com/ibm-security/isam-ansible-roles.git,master --roles-path {{ roles_path | quote }} --force
