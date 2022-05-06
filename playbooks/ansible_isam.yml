@@ -1,6 +1,6 @@
 ---
 # playbooks/ansible_isam.yml
-# @version v2.00_2021-NOV-14
+# @version v2.01_2021-DEC-10
 # @author Kevin Jeffery
 
 - name: Build the Ansible Control system for ISAM
@@ -36,7 +36,8 @@
       name:
       - "requests"
       # - "importlib" # Not required for Python3 - built in.
-      - "git+https://github.com/ibm-security/ibmsecurity#egg=ibmsecurity"
+      # - "git+https://github.com/ibm-security/ibmsecurity#egg=ibmsecurity"
+      - "ibmsecurity"
       state: "latest"
     become: yes
  
